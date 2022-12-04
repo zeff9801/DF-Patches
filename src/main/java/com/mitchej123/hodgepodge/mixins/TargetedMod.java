@@ -24,7 +24,12 @@ public enum TargetedMod {
     EXTRA_UTILITIES("ExtraUtilities", null, "ExtraUtilities"),
     BIBLIOCRAFT("Bibliocraft", null, "BiblioCraft"),
     ZTONES("ZTones", null, "Ztones"),
-    BUKKIT("Bukkit/Thermos", "Bukkit", null);
+    BUKKIT("Bukkit/Thermos", "Bukkit", null),
+    DBC("Dragon Block C", null, "jinryuudragonblockc"),
+    JRMC("Jinryuu Core", null, "jinryuujrmcore"),
+    JBRA("Jinryuu Render Addon", null, "jinryuubetterrenderaddon"),
+    NEI("Not Enough Items", null, "NotEnoughItems"),
+    GIBLY_VOICECHAT("Gibly's Voice Chat", null, "gvc");
 
     public final String modName;
     public final String coreModClass;
