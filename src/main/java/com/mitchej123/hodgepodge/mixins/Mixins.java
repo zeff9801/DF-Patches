@@ -443,6 +443,113 @@ public enum Mixins {
             .setApplyIf(() -> Common.config.fixPotionRenderOffset)
             .addTargetedMod(TargetedMod.TRAVELLERSGEAR)),
 
+    MINECRAFT_MIXIN(new Builder("Minecraft Better Crash Reports + Custom Resource Pack")
+            .setPhase(Phase.EARLY)
+            .addMixinClasses("minecraft.MixinMinecraft")
+            .setApplyIf(() -> true)
+            .addTargetedMod(TargetedMod.VANILLA)),
+    FOOD_STATS_MIXIN(new Builder("Have food not get depleted")
+            .setPhase(Phase.EARLY)
+            .addMixinClasses("minecraft.FoodStatsMixin")
+            .setApplyIf(() -> true)
+            .addTargetedMod(TargetedMod.VANILLA)),
+    DBCKITECH_MIXINS(new Builder("Give our custom forms, custom auras")
+            .setPhase(Phase.LATE)
+            .addMixinClasses("dbc.MixinDBCKiTech")
+            .setApplyIf(() -> true)
+            .addTargetedMod(TargetedMod.DBC)),
+    DBC_DISABLE_2DAURA(new Builder("Remove 2D aura as they are performance killers")
+            .setPhase(Phase.LATE)
+            .addMixinClasses("dbc.MixinEntityAura2")
+            .setApplyIf(() -> true)
+            .addTargetedMod(TargetedMod.DBC)),
+    DBC_TOGGLE_AURA(new Builder("Make aura be toggle-able")
+            .setPhase(Phase.LATE)
+            .addMixinClasses("dbc.MixinRenderAura2")
+            .setApplyIf(() -> true)
+            .addTargetedMod(TargetedMod.DBC)),
+    DBC_TOGGLE_RING(new Builder("Make aura ring be toggle-able")
+            .setPhase(Phase.LATE)
+            .addMixinClasses("dbc.MixinRenderAuraRing")
+            .setApplyIf(() -> true)
+            .addTargetedMod(TargetedMod.DBC)),
+    JRMC_NO_KEYS(new Builder("Remove all the keybinds created by JRMC mod")
+            .setPhase(Phase.LATE)
+            .addMixinClasses("jrmcore.MixinJRMCoreClient")
+            .setApplyIf(() -> true)
+            .addTargetedMod(TargetedMod.JRMC)),
+    JRMCoreComTickH_ACCESSOR(new Builder("Make certain fields of the target class be indexable")
+            .setPhase(Phase.LATE)
+            .addMixinClasses("jrmcore.IJRMCoreComTickH")
+            .setApplyIf(() -> true)
+            .addTargetedMod(TargetedMod.JRMC)),
+    JRMCoreKeyHandler_ACCESSOR(new Builder("Make certain fields of the target class be indexable")
+            .setPhase(Phase.LATE)
+            .addMixinClasses("jrmcore.IJRMCoreKeyHandler")
+            .setApplyIf(() -> true)
+            .addTargetedMod(TargetedMod.JRMC)),
+    JRMC_ALTER_KIATTACKS(new Builder("Change how damage is applied for Ki attacks, so we can alter it")
+            .setPhase(Phase.LATE)
+            .addMixinClasses("jrmcore.MixinEntityEnergyAtt")
+            .setApplyIf(() -> true)
+            .addTargetedMod(TargetedMod.JRMC)),
+    JRMC_REMOVE_NOTIFICATIONS(new Builder("Remove the annoying notifications shown on screen")
+            .setPhase(Phase.LATE)
+            .addMixinClasses("jrmcore.MixinJGNotificationHandler")
+            .setApplyIf(() -> true)
+            .addTargetedMod(TargetedMod.JRMC)),
+    JRMC_CHANGE_BODYSIZE(new Builder("Have our custom forms influence body size")
+            .setPhase(Phase.LATE)
+            .addMixinClasses("jrmcore.MixinJRMCoreCliTicH")
+            .setApplyIf(() -> true)
+            .addTargetedMod(TargetedMod.JRMC)),
+    JRMC_DISABLE_DAMAGE(new Builder("Disable damage dealt by JRMC so we can use our own")
+            .setPhase(Phase.LATE)
+            .addMixinClasses("jrmcore.MixinJRMCoreEH")
+            .setApplyIf(() -> true)
+            .addTargetedMod(TargetedMod.JRMC)),
+    JRMC_DISABLE_GUI_BARS(new Builder("Have the bars on screen not render anymore")
+            .setPhase(Phase.LATE)
+            .addMixinClasses("jrmcore.MixinJRMCoreGuiBars")
+            .setApplyIf(() -> true)
+            .addTargetedMod(TargetedMod.JRMC)),
+    JRMC_TOGGLE_GROUND_PARTICLES(new Builder("Have ground particles be toggleable")
+            .setPhase(Phase.LATE)
+            .addMixinClasses("jrmcore.MixinRenderCusPar")
+            .setApplyIf(() -> true)
+            .addTargetedMod(TargetedMod.JRMC)),
+    JRMC_KI_COMMAND(new Builder("Change the way Ki Attacks are spawned with the command")
+            .setPhase(Phase.LATE)
+            .addMixinClasses("jrmcore.MixinSpawnKiCommand")
+            .setApplyIf(() -> true)
+            .addTargetedMod(TargetedMod.JRMC)),
+    JBRA_PLAYER_RENDER(new Builder("Apply custom render logic to the player model")
+            .setPhase(Phase.LATE)
+            .addMixinClasses("jbra.MixinRenderPlayerJBRA")
+            .setApplyIf(() -> true)
+            .addTargetedMod(TargetedMod.JBRA)),
+    WORLDEDIT_FIX_CRASH(new Builder("Fix the crash with the //calc command")
+            .setPhase(Phase.EARLY)
+            .addMixinClasses("worldedit.MixinUtilityCommands")
+            .setApplyIf(() -> true)
+            .setSide(Side.SERVER)
+            .addTargetedMod(TargetedMod.VANILLA)),
+    NEI_CUSTOM_GUI(new Builder("Have NEI register our custom GUI to be usable with NEI")
+            .setPhase(Phase.LATE)
+            .addMixinClasses("nei.MixinRecipeInfo")
+            .setApplyIf(() -> true)
+            .addTargetedMod(TargetedMod.NEI)),
+    NETTY_PACKETBUFFER(new Builder("Lift the cap on packets so we can send a lot of data in one")
+            .setPhase(Phase.EARLY)
+            .addMixinClasses("netty.nio.MixinPacketBuffer")
+            .setApplyIf(() -> true)
+            .addTargetedMod(TargetedMod.VANILLA)),
+    GIBBLY_VOICE_RESTRICTION(new Builder("Have only players above 1k level or donors be able to use voicechat")
+            .setPhase(Phase.LATE)
+            .addMixinClasses("gibly.MixinKeyManager")
+            .setApplyIf(() -> true)
+            .addTargetedMod(TargetedMod.GIBLY_VOICECHAT)),
+
     // Exu Unenchanting fix
     FIX_EXTRA_UTILITIES_UNENCHANTING(new Builder("Fix Exu Unenchanting")
             .addMixinClasses("extrautilities.MixinRecipeUnEnchanting")
