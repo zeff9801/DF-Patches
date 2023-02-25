@@ -24,16 +24,6 @@ public abstract class FoodStatsMixin {
         EnumDifficulty enumdifficulty = p_75118_1_.worldObj.difficultySetting;
         this.prevFoodLevel = this.foodLevel;
 
-        if (this.foodExhaustionLevel > 4.0F) {
-            this.foodExhaustionLevel -= 4.0F;
-
-            if (this.foodSaturationLevel > 0.0F) {
-                this.foodSaturationLevel = Math.max(this.foodSaturationLevel - 1.0F, 0.0F);
-            } else if (enumdifficulty != EnumDifficulty.PEACEFUL) {
-                this.foodLevel = 20;
-            }
-        }
-
         if (p_75118_1_.worldObj.getGameRules().getGameRuleBooleanValue("naturalRegeneration") && this.foodLevel >= 18 && p_75118_1_.shouldHeal()) {
             ++this.foodTimer;
 

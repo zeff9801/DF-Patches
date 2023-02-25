@@ -174,12 +174,6 @@ public class MixinJRMCoreCliTicH {
             if ((JRMCoreH.Pwrtyp == 1 || JRMCoreH.Pwrtyp == 2) && JRMCoreKeyHandler.Sagasys.getIsKeyPressed()) {
                 plyr.openGui(mod_JRMCore.instance, 60, plyr.worldObj, (int) plyr.posX, (int) plyr.posY, (int) plyr.posZ);
             }
-            if (IJRMCoreKeyHandler.getInfopanel().getIsKeyPressed()) {
-                plyr.openGui(mod_JRMCore.instance, 30, plyr.worldObj, (int) plyr.posX, (int) plyr.posY, (int) plyr.posZ);
-            }
-            if (IJRMCoreKeyHandler.getDS().getIsKeyPressed()) {
-                plyr.openGui(mod_JRMCore.instance, 0, plyr.worldObj, (int) plyr.posX, (int) plyr.posY, (int) plyr.posZ);
-            }
             if (JRMCoreH.PlyrAttrbts[0] == 0 || this.wig) {
                 this.wig = false;
                 JRMCoreH.jrmct(1);

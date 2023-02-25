@@ -282,7 +282,6 @@ public class LoadingConfig {
 
     public static final String[] defaultPollutionRenderStandardBlock = new String[] {
         "net.minecraft.block.BlockGrass:GRASS",
-        "net.minecraft.block.BlockLeavesBase:LEAVES",
         "biomesoplenty.common.blocks.BlockOriginGrass:GRASS",
         "biomesoplenty.common.blocks.BlockLongGrass:GRASS",
         "biomesoplenty.common.blocks.BlockNewGrass:GRASS",

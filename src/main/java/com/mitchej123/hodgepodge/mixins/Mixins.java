@@ -523,6 +523,11 @@ public enum Mixins {
             .addMixinClasses("jrmcore.MixinSpawnKiCommand")
             .setApplyIf(() -> true)
             .addTargetedMod(TargetedMod.JRMC)),
+    JRMC_NO_KEYBINDS(new Builder("Fix ghost GUI keybinds")
+            .setPhase(Phase.LATE)
+            .addMixinClasses("jrmcore.MixinJRMCoreGuiHandler")
+            .setApplyIf(() -> true)
+            .addTargetedMod(TargetedMod.JRMC)),
     JBRA_PLAYER_RENDER(new Builder("Apply custom render logic to the player model")
             .setPhase(Phase.LATE)
             .addMixinClasses("jbra.MixinRenderPlayerJBRA")
