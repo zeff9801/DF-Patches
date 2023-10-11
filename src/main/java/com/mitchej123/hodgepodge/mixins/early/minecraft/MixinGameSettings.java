@@ -1,6 +1,7 @@
 package com.mitchej123.hodgepodge.mixins.early.minecraft;
 
 import net.minecraft.client.settings.GameSettings;
+
 import org.spongepowered.asm.mixin.Dynamic;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -15,7 +16,7 @@ public class MixinGameSettings {
 
     @Inject(method = "loadOptions", at = @At("TAIL"))
     public void hodgepodge$forceChunkLoadingToDefault(CallbackInfo ci) {
-        ofChunkLoading = 0;
+        this.ofChunkLoading = 0;
     }
 
     @Inject(method = "setOptionValue", at = @At("HEAD"), cancellable = true)
