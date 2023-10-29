@@ -616,7 +616,16 @@ public enum Mixins {
             .addMixinClasses("customnpcs.MixinClientCacheHandler")
             .setSide(Side.CLIENT)
             .setApplyIf(() -> true)
-            .addTargetedMod(TargetedMod.CUSTOMNPCS));
+            .addTargetedMod(TargetedMod.CUSTOMNPCS)),
+    FIX_FONT_RENDERER_LINEWRAP_RECURSION(
+            new Builder("Replace recursion with iteration in FontRenderer line wrapping code")
+                    .addMixinClasses("minecraft.MixinFontRenderer").addTargetedMod(TargetedMod.VANILLA)
+                    .setApplyIf(() -> true).setPhase(Phase.EARLY)
+                    .setSide(Side.CLIENT)),
+    FIX_CHAT_COLOR_WRAPPING(new Builder("Fix wrapped chat lines missing colors").setPhase(Phase.EARLY)
+            .addMixinClasses("minecraft.MixinGuiNewChat_FixColorWrapping", "minecraft.MixinFontRendererAccessor")
+            .setSide(Side.CLIENT).setApplyIf(() -> true)
+            .addTargetedMod(TargetedMod.VANILLA));
 
     public final String name;
     public final List<String> mixinClasses;

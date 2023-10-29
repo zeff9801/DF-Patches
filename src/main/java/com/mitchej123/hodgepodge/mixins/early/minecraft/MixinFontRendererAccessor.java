@@ -5,11 +5,17 @@ import net.minecraft.client.renderer.texture.TextureManager;
 import net.minecraft.util.ResourceLocation;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.gen.Accessor;
+import org.spongepowered.asm.mixin.gen.Invoker;
 
 import java.util.Random;
 
 @Mixin(FontRenderer.class)
 public interface MixinFontRendererAccessor {
+
+    @Invoker("getFormatFromString")
+    static String callGetFormatFromString(String s) {
+        throw new IllegalStateException("Mixin stub invoked");
+    }
 
     @Accessor
     static ResourceLocation[] getUnicodePageLocations() {throw new IllegalStateException("Mixin stub invoked");}
