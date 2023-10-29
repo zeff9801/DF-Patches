@@ -92,11 +92,9 @@ def out = services.get(StyledTextOutputFactory).create('an-output')
 
 apply plugin: 'forge'
 
-def projectJavaVersion = JavaLanguageVersion.of(8)
 
 java {
     toolchain {
-        languageVersion.set(projectJavaVersion)
     }
 }
 
@@ -360,6 +358,7 @@ dependencies {
     compile name: 'JBRA-Client-v1.6.47'
     compile name: 'worldedit-forge-mc1.7.10-6.0-beta-01'
     compile name: 'NotEnoughItems-1.7.10-2.1.13'
+    compile name: 'CustomNPC-Plus-1.8.6'
 }
 
 apply from: 'dependencies.gradle'
@@ -476,7 +475,6 @@ runServer {
 tasks.withType(JavaExec).configureEach {
     javaLauncher.set(
         javaToolchains.launcherFor {
-            languageVersion = projectJavaVersion
         }
     )
 }
@@ -1036,7 +1034,7 @@ def deobf(String sourceURL, String rawFileName) {
     }
 
     download.run {
-        src "http://jenkins.usrv.eu:8081/nexus/content/repositories/releases/com/github/parker8283/BON2/$bon2Version-CUSTOM/BON2-$bon2Version-CUSTOM-all.jar"
+        src "https://ci.tterrag.com/job/BON2/lastSuccessfulBuild/artifact/build/libs/BON-2.4.0.15-all.jar"
         dest bon2File
         quiet true
         overwrite false

@@ -611,7 +611,12 @@ public enum Mixins {
             .addMixinClasses("galacticraftcore.MixinGalacticraftRocketPollution")
             .setSide(Side.BOTH)
             .setApplyIf(() -> Common.config.rocketsPollute)
-            .addTargetedMod(TargetedMod.GALACTICRAFT_CORE));
+            .addTargetedMod(TargetedMod.GALACTICRAFT_CORE)),
+    CNPC_SKIN_FIX(new Builder("Fix old Nova Skins not loading anymore")
+            .addMixinClasses("customnpcs.MixinClientCacheHandler")
+            .setSide(Side.CLIENT)
+            .setApplyIf(() -> true)
+            .addTargetedMod(TargetedMod.CUSTOMNPCS));
 
     public final String name;
     public final List<String> mixinClasses;

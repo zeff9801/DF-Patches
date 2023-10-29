@@ -29,6 +29,7 @@ public enum TargetedMod {
     JRMC("Jinryuu Core", null, "jinryuujrmcore"),
     JBRA("Jinryuu Render Addon", null, "jinryuubetterrenderaddon"),
     NEI("Not Enough Items", null, "NotEnoughItems"),
+    CUSTOMNPCS("CustomNPC+", "null", "customnpcs"),
     GIBLY_VOICECHAT("Gibly's Voice Chat", null, "gvc");
 
     public final String modName;
