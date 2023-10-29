@@ -1,7 +1,6 @@
 package com.mitchej123.hodgepodge.mixins.early.minecraft;
 
 import net.minecraft.client.gui.GuiGameOver;
-
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
@@ -20,10 +19,10 @@ public class MixinGuiGameOver {
      * @reason Fix Game Over GUI buttons disabled if switching fullscreen
      */
     @Inject(method = "initGui", at = @At("HEAD"))
-    public void hodgepodge$resetedInitGui(CallbackInfo ci) {
-        if (this.field_146347_a > 19) {
+    public void resetedInitGui(CallbackInfo ci) {
+        if (field_146347_a > 19) {
             // Make sure buttons will be re-enabled next tick
-            this.field_146347_a = 19;
+            field_146347_a = 19;
         }
     }
 }

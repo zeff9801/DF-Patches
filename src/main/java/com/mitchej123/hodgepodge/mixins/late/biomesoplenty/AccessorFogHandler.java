@@ -1,10 +1,9 @@
 package com.mitchej123.hodgepodge.mixins.late.biomesoplenty;
 
+import biomesoplenty.client.fog.FogHandler;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.gen.Accessor;
 import org.spongepowered.asm.mixin.gen.Invoker;
-
-import biomesoplenty.client.fog.FogHandler;
 
 @Mixin(FogHandler.class)
 public interface AccessorFogHandler {

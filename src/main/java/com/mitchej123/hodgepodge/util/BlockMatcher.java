@@ -1,19 +1,16 @@
 package com.mitchej123.hodgepodge.util;
 
-import java.util.Map;
-import java.util.Set;
-
-import net.minecraft.block.Block;
-import net.minecraft.client.multiplayer.WorldClient;
-import net.minecraftforge.event.world.WorldEvent;
-
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
 import com.mitchej123.hodgepodge.Common;
-
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.registry.FMLControlledNamespacedRegistry;
 import cpw.mods.fml.common.registry.GameData;
+import java.util.Map;
+import java.util.Set;
+import net.minecraft.block.Block;
+import net.minecraft.client.multiplayer.WorldClient;
+import net.minecraftforge.event.world.WorldEvent;
 
 // Shamelessly Taken from BetterFoliage by octarine-noise
 
@@ -51,7 +48,8 @@ public class BlockMatcher {
                 try {
                     blackList.add(Class.forName(lines[0].substring(1)));
                     Common.log.info("\t added blacklist:" + lines[0].substring(1));
-                } catch (ClassNotFoundException ignored) {}
+                } catch (ClassNotFoundException ignored) {
+                }
             } else {
                 if (type == null) {
                     Common.log.error(String.format("Invalid type [%s]", line));
@@ -61,7 +59,8 @@ public class BlockMatcher {
                 try {
                     whiteList.put(Class.forName(lines[0]), type);
                     Common.log.info("\t added whitelist:" + lines[0]);
-                } catch (ClassNotFoundException ignored) {}
+                } catch (ClassNotFoundException ignored) {
+                }
             }
         }
         // updateBlockIDs();
@@ -83,9 +82,7 @@ public class BlockMatcher {
         return null;
     }
 
-    /**
-     * Caches block IDs on world load for fast lookup
-     * 
+    /** Caches block IDs on world load for fast lookup
      * @param event
      */
     @SubscribeEvent

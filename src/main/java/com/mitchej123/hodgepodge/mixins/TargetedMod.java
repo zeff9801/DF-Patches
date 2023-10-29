@@ -1,33 +1,26 @@
 package com.mitchej123.hodgepodge.mixins;
 
 public enum TargetedMod {
-
-    ARCHAICFIX("ArchaicFix", "org.embeddedt.archaicfix.ArchaicCore", "archaicfix"),
-    AUTOMAGY("Automagy", null, "Automagy"),
-    BAUBLES("Baubles", null, "Baubles"),
-    BETTERHUD("Better HUD", null, "hud"),
-    BIBLIOCRAFT("Bibliocraft", null, "BiblioCraft"),
-    BOP("BiomesOPlenty", null, "BiomesOPlenty"),
-    BUKKIT("Bukkit/Thermos", "Bukkit", null),
-    COFH_CORE("CoFHCore", "cofh.asm.LoadingPlugin", "CoFHCore"),
-    EXTRA_UTILITIES("ExtraUtilities", null, "ExtraUtilities"),
+    VANILLA("Minecraft", null),
+    GTNHLIB("GTNHLib", "com.gtnewhorizon.gtnhlib.core.GTNHLibCore", "gtnhlib"),
+    IC2("IC2", "ic2.core.coremod.IC2core", "IC2"),
     FASTCRAFT("FastCraft", "fastcraft.Tweaker"),
-    GALACTICRAFT_CORE("GalacticraftCore", "micdoodle8.mods.galacticraft.core.asm.GCLoadingPlugin", "GalacticraftCore"),
+    COFH_CORE("CoFHCore", "cofh.asm.LoadingPlugin", "CoFHCore"),
+    THAUMCRAFT("Thaumcraft", null, "Thaumcraft"), // "thaumcraft.codechicken.core.launch.DepLoader"
     GT5U("GregTech5u", null, "gregtech"), // Also matches GT6.
     GT6("GregTech6", "gregtech.asm.GT_ASM", "gregapi"), // Can be used to exclude GT6 from the GT5U target.
-    GTNHLIB("GTNHLib", "com.gtnewhorizon.gtnhlib.core.GTNHLibCore", "gtnhlib"),
-    HARVESTCRAFT("harvestcraft", null, "harvestcraft"),
-    HARVESTTHENETHER("harvestthenether", null, "harvestthenether"),
     HUNGER_OVERHAUL("HungerOverhaul", null, "HungerOverhaul"),
-    IC2("IC2", "ic2.core.coremod.IC2core", "IC2"),
-    IMMERSIVE_ENGINENEERING("Immersive Engineering", null, "ImmersiveEngineering"),
-    JOURNEYMAP("JourneyMap", null, "journeymap"),
-    LOTR("The Lord of the rings mod", "lotr.common.coremod.LOTRLoadingPlugin", "lotr"),
-    LWJGL3IFY("lwjgl3ify", "me.eigenraven.lwjgl3ify.core.Lwjgl3ifyCoremod", "lwjgl3ify"),
-    MINECHEM("Minechem", null, "minechem"),
+    RAILCRAFT("Railcraft", null, "Railcraft"),
+    BOP("BiomesOPlenty", null, "BiomesOPlenty"),
     MRTJPCORE("MrTJPCore", null, "MrTJPCoreMod"),
+    AUTOMAGY("Automagy", null, "Automagy"),
+    PROJECTE("ProjectE", null, "projecte"),
+    HARVESTTHENETHER("harvestthenether", null, "harvestthenether"),
+    GALACTICRAFT_CORE("GalacticraftCore", "micdoodle8.mods.galacticraft.core.asm.GCLoadingPlugin", "GalacticraftCore"),
+    BAUBLES("Baubles", null, "Baubles"),
+    TRAVELLERSGEAR("TravellersGear", null, "TravellersGear"),
+    JOURNEYMAP("JourneyMap", null, "journeymap"),
     OPTIFINE("Optifine", "optifine.OptiFineForgeTweaker", "Optifine"),
-
     EXTRA_UTILITIES("ExtraUtilities", null, "ExtraUtilities"),
     BIBLIOCRAFT("Bibliocraft", null, "BiblioCraft"),
     ZTONES("ZTones", null, "Ztones"),
@@ -37,21 +30,9 @@ public enum TargetedMod {
     JBRA("Jinryuu Render Addon", null, "jinryuubetterrenderaddon"),
     NEI("Not Enough Items", null, "NotEnoughItems"),
     GIBLY_VOICECHAT("Gibly's Voice Chat", null, "gvc");
-    PROJECTE("ProjectE", null, "ProjectE"),
-    RAILCRAFT("Railcraft", null, "Railcraft"),
-    THAUMCRAFT("Thaumcraft", null, "Thaumcraft"), // "thaumcraft.codechicken.core.launch.DepLoader"
-    TINKERSCONSTRUCT("TConstruct", null, "TConstruct"),
-    TRAVELLERSGEAR("TravellersGear", null, "TravellersGear"),
-    VANILLA("Minecraft", null),
-    WITCHERY("Witchery", null, "witchery"),
-    XAEROWORLDMAP("Xaero's World Map", null, "XaeroWorldMap"),
-    ZTONES("ZTones", null, "Ztones");
 
-    /** The "name" in the @Mod annotation */
     public final String modName;
-    /** Class that implements the IFMLLoadingPlugin interface */
     public final String coreModClass;
-    /** The "modid" in the @Mod annotation */
     public final String modId;
 
     TargetedMod(String modName, String coreModClass) {

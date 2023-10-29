@@ -1,14 +1,12 @@
 package com.mitchej123.hodgepodge.asm.util;
 
+import com.google.common.collect.Lists;
 import java.lang.reflect.Method;
 import java.util.List;
 
-import com.google.common.collect.Lists;
-
 /**
  *
- * Reference to a method. Contains information to locate the method regardless of environment.
- * 
+ *  Reference to a method. Contains information to locate the method regardless of environment.
  * @author octarine-noise
  */
 
@@ -23,7 +21,12 @@ public class MethodRef extends AbstractResolvable<Method> {
     public ClassRef returnType;
     public ClassRef[] argTypes;
 
-    public MethodRef(ClassRef parent, String mcpName, String srgName, String obfName, ClassRef returnType,
+    public MethodRef(
+            ClassRef parent,
+            String mcpName,
+            String srgName,
+            String obfName,
+            ClassRef returnType,
             ClassRef... argTypes) {
         this.parent = parent;
         this.mcpName = mcpName;
@@ -67,13 +70,15 @@ public class MethodRef extends AbstractResolvable<Method> {
             methodObj = parentClass.getDeclaredMethod(srgName, args);
             methodObj.setAccessible(true);
             return methodObj;
-        } catch (Exception e) {}
+        } catch (Exception e) {
+        }
 
         try {
             methodObj = parentClass.getDeclaredMethod(mcpName, args);
             methodObj.setAccessible(true);
             return methodObj;
-        } catch (Exception e) {}
+        } catch (Exception e) {
+        }
         return null;
     }
 

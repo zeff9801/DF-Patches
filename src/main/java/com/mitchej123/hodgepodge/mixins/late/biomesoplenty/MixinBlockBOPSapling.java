@@ -1,25 +1,21 @@
 package com.mitchej123.hodgepodge.mixins.late.biomesoplenty;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
-
-import net.minecraft.block.Block;
-import net.minecraft.world.World;
-import net.minecraft.world.gen.feature.WorldGenerator;
-
-import org.apache.commons.lang3.tuple.Pair;
-import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Unique;
-import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
-
 import biomesoplenty.api.content.BOPCBlocks;
 import biomesoplenty.common.blocks.BlockBOPSapling;
 import biomesoplenty.common.world.features.trees.WorldGenBOPTaiga2;
 import biomesoplenty.common.world.features.trees.WorldGenBOPTaiga3;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+import net.minecraft.block.Block;
+import net.minecraft.world.World;
+import net.minecraft.world.gen.feature.WorldGenerator;
+import org.apache.commons.lang3.tuple.Pair;
+import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 
 @Mixin(BlockBOPSapling.class)
 public class MixinBlockBOPSapling {
@@ -29,8 +25,8 @@ public class MixinBlockBOPSapling {
             cancellable = true,
             locals = LocalCapture.CAPTURE_FAILSOFT,
             method = "func_149878_d")
-    public void hodgepodge$growTree(World world, int x, int y, int z, Random random, CallbackInfo ci, int meta,
-            Object obj, int rnd) {
+    public void growTree(
+            World world, int x, int y, int z, Random random, CallbackInfo ci, int meta, Object obj, int rnd) {
 
         // We only care about fir saplings
         if (meta != 6) return;
@@ -57,12 +53,10 @@ public class MixinBlockBOPSapling {
         ci.cancel();
     }
 
-    @Unique
     private static boolean isFirSapling(Block block, int meta) {
         return BOPCBlocks.saplings == block && meta == 6;
     }
 
-    @Unique
     private static boolean isBigFirPattern(World world, int x, int y, int z) {
         if (world == null || !isFirSapling(world.getBlock(x, y, z), world.getBlockMetadata(x, y, z))) return false;
 
@@ -73,15 +67,14 @@ public class MixinBlockBOPSapling {
         return true;
     }
 
-    @Unique
     private static boolean isBigFirNeighbor(World world, int x, int y, int z) {
         if (world == null) return false;
-        return isBigFirPattern(world, x - 1, y, z) || isBigFirPattern(world, x + 1, y, z)
+        return isBigFirPattern(world, x - 1, y, z)
+                || isBigFirPattern(world, x + 1, y, z)
                 || isBigFirPattern(world, x, y, z - 1)
                 || isBigFirPattern(world, x, y, z + 1);
     }
 
-    @Unique
     private static List<Pair<Block, Integer>> getNeighbors(World world, int x, int y, int z) {
         List<Pair<Block, Integer>> result = new ArrayList<>();
 

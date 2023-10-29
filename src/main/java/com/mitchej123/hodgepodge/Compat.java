@@ -1,14 +1,12 @@
 package com.mitchej123.hodgepodge;
 
-import java.lang.reflect.Method;
-import java.lang.reflect.Modifier;
-
 import codechicken.nei.NEIClientConfig;
 import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.relauncher.Side;
+import java.lang.reflect.Method;
+import java.lang.reflect.Modifier;
 
 public class Compat {
-
     private static boolean isClient;
 
     private static boolean isNeiPresent;
@@ -16,49 +14,31 @@ public class Compat {
 
     private static boolean isGT5Present;
 
-    private static boolean isIC2CropPluginPresent;
-
-    private static boolean isThaumcraftPresent;
-
-    private static boolean isThaumicBasesPresent;
-
-    private static boolean isRailcraftPresent;
-
-    private static boolean isGalacticraftPresent;
-
     static void init(Side side) {
         isClient = side == Side.CLIENT;
 
         isNeiPresent = Loader.isModLoaded("NotEnoughItems");
         if (isClient) {
             try {
-                Method isBookmarkPanelHiddenMethod = Class.forName("codechicken.nei.NEIClientConfig")
-                        .getMethod("isBookmarkPanelHidden");
+                Method isBookmarkPanelHiddenMethod =
+                        Class.forName("codechicken.nei.NEIClientConfig").getMethod("isBookmarkPanelHidden");
                 if (Modifier.isStatic(isBookmarkPanelHiddenMethod.getModifiers())
                         && isBookmarkPanelHiddenMethod.getReturnType().equals(boolean.class)) {
                     doesNeiHaveBookmarkAPI = true;
                 }
-            } catch (Exception e) {}
+            } catch (Exception e) {
+            }
         }
 
         isGT5Present = Loader.isModLoaded("gregtech") && !Loader.isModLoaded("gregapi");
-
-        isIC2CropPluginPresent = Loader.isModLoaded("Ic2Nei");
-
-        isThaumcraftPresent = Loader.isModLoaded("Thaumcraft");
-
-        isThaumicBasesPresent = Loader.isModLoaded("thaumicbases");
-
-        isRailcraftPresent = Loader.isModLoaded("Railcraft");
-
-        isGalacticraftPresent = Loader.isModLoaded("GalacticraftCore");
     }
 
     /**
      * Cannot be used before pre-init phase.
      */
     public static boolean isNeiLeftPanelVisible() {
-        return isNeiPresent && isClient
+        return isNeiPresent
+                && isClient
                 && NEIClientConfig.isEnabled()
                 && !NEIClientConfig.isHidden()
                 && (!doesNeiHaveBookmarkAPI || !NEIClientConfig.isBookmarkPanelHidden());
@@ -69,40 +49,5 @@ public class Compat {
      */
     public static boolean isGT5Present() {
         return isGT5Present;
-    }
-
-    /**
-     * Cannot be used before pre-init phase.
-     */
-    public static boolean isIC2CropPluginPresent() {
-        return isIC2CropPluginPresent;
-    }
-
-    /**
-     * Cannot be used before pre-init phase.
-     */
-    public static boolean isThaumcraftPresent() {
-        return isThaumcraftPresent;
-    }
-
-    /**
-     * Cannot be used before pre-init phase.
-     */
-    public static boolean isThaumicBasesPresent() {
-        return isThaumicBasesPresent;
-    }
-
-    /**
-     * Cannot be used before pre-init phase.
-     */
-    public static boolean isRailcraftPresent() {
-        return isRailcraftPresent;
-    }
-
-    /**
-     * Cannot be used before pre-init phase.
-     */
-    public static boolean isGalacticraftPresent() {
-        return isGalacticraftPresent;
     }
 }

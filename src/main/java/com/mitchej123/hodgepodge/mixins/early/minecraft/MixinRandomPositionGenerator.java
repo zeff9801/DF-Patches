@@ -1,23 +1,20 @@
 package com.mitchej123.hodgepodge.mixins.early.minecraft;
 
+import com.mitchej123.hodgepodge.Common;
 import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.ai.RandomPositionGenerator;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.Vec3;
-
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 
-import com.mitchej123.hodgepodge.Common;
-
 @Mixin(RandomPositionGenerator.class)
 public class MixinRandomPositionGenerator {
-
     /**
      * @author mitchej123
      * @reason Backported fix north/west bias
      */
-    @Overwrite
+    @Overwrite()
     private static Vec3 findRandomTargetBlock(EntityCreature entityCreature, int hor, int ver, Vec3 facing) {
         boolean found = false;
         double tx = 0, ty = 0, tz = 0;
@@ -25,11 +22,14 @@ public class MixinRandomPositionGenerator {
         boolean tooFar = false;
 
         if (entityCreature.hasHome()) {
-            final double d0 = entityCreature.getHomePosition().getDistanceSquared(
-                    MathHelper.floor_double(entityCreature.posX),
-                    MathHelper.floor_double(entityCreature.posY),
-                    MathHelper.floor_double(entityCreature.posZ)) + 4.0F;
-            final double d1 = entityCreature.func_110174_bM() /* getMaximumHomeDistance() */ + (double) hor;
+            final double d0 = entityCreature
+                            .getHomePosition()
+                            .getDistanceSquared(
+                                    MathHelper.floor_double(entityCreature.posX),
+                                    MathHelper.floor_double(entityCreature.posY),
+                                    MathHelper.floor_double(entityCreature.posZ))
+                    + 4.0F;
+            final double d1 = entityCreature.func_110174_bM() /*getMaximumHomeDistance()*/ + (double) hor;
             tooFar = d0 < d1 * d1;
         }
 

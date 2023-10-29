@@ -1,51 +1,38 @@
-
-configurations {
-    transformedMod // Mods that can be transformed - used for compiling hodgepodge, but not necessary at runtime
-    transformedMod.canBeConsumed = false
-    transformedModCompileOnly
-    transformedModCompileOnly.canBeConsumed = false
-
-    // Add the transformed mod dependencies to the compilation and runtime classpaths, but don't publish them in the Maven metadata
-    compileClasspath.extendsFrom(transformedMod, transformedModCompileOnly)
-    runtimeClasspath.extendsFrom(transformedMod)
-    testCompileClasspath.extendsFrom(transformedMod, transformedModCompileOnly)
-    testRuntimeClasspath.extendsFrom(transformedMod)
-}
-
 dependencies {
-    api("com.github.GTNewHorizons:GTNHLib:0.0.13:dev")
+    compile("com.github.GTNewHorizons:NotEnoughItems:2.3.1-GTNH:dev")
+    compile("com.github.GTNewHorizons:GT5-Unofficial:5.09.41.29:dev")
+    compile("com.github.GTNewHorizons:ForestryMC:4.4.14:dev")
+    compileOnly("com.github.GTNewHorizons:EnderIO:2.3.1.43:dev")
+    compile("com.github.GTNewHorizons:StructureLib:1.1.9:dev")
+    compile("com.github.GTNewHorizons:GTNHLib:0.0.5:dev")
+    compile('com.gtnewhorizon:gtnhmixins:2.0.1')
+    compile("net.industrial-craft:industrialcraft-2:2.2.828-experimental:dev")
+    compile("com.github.GTNewHorizons:AppleCore:3.2.2:dev")
+    compileOnly("mrtjp:MrTJPCore:1.7.10-1.1.0.33:dev")
+    compileOnly("curse.maven:automagy-222153:2285272")
+    
+    compileOnly("com.github.GTNewHorizons:Railcraft:9.13.10:dev") {
+        // RC Depends on BuildCraft & Baubles and a few others, use transitive to pull those in for `runClient`
+        transitive = true
+    }
+    compileOnly("com.github.GTNewHorizons:HungerOverhaul:1.0.4-GTNH:dev")
+    
+    compileOnly("thaumcraft:Thaumcraft:1.7.10-4.2.3.5:dev")
+    compile("curse.maven:cofh-core-69162:2388751")
+    compile("curse.maven:biomes-o-plenty-220318:2499612")
+    compileOnly("curse.maven:projecte-226410:2340786")
+    compileOnly(deobf("https://mediafiles.forgecdn.net/files/2241/397/Pam%27s+Harvest+the+Nether+1.7.10a.jar"))
+    compileOnly("com.github.GTNewHorizons:Galacticraft:3.0.44-GTNH:dev") {
+        transitive = false
+    }
+    compileOnly("com.github.GTNewHorizons:Baubles:1.0.1.14:dev")
+    compileOnly fileTree(dir: 'dependencies', includes: ['TravellersGear-1.7.10-1.16.8-GTNH.jar'])
+    compileOnly('curse.maven:journeymap-32274:2367915')
+    compileOnly('curse.maven:extra-utilities-225561:2264383')
+    compileOnly('curse.maven:bibliocraft-228027:2423369')
+    compileOnly('curse.maven:ztones-224369:2223720')
+    
 
-    transformedMod("com.github.GTNewHorizons:NotEnoughItems:2.4.3-GTNH:dev") // force a more up-to-date NEI version
-    transformedMod("com.github.GTNewHorizons:Baubles:1.0.1.16:dev")
-    transformedMod("com.github.GTNewHorizons:Applied-Energistics-2-Unofficial:rv3-beta-259-GTNH")
-    transformedMod("com.github.GTNewHorizons:Galacticraft:3.0.73-GTNH:dev")
-    transformedMod("com.github.GTNewHorizons:GT5-Unofficial:5.09.44.30:dev")
-    transformedMod("com.github.GTNewHorizons:HungerOverhaul:1.0.4-GTNH:dev")
-    transformedMod("com.github.GTNewHorizons:MrTJPCore:1.1.4:dev") // Do not update, fixed afterwards
-    transformedMod("com.github.GTNewHorizons:Railcraft:9.15.0:dev") { exclude group: "thaumcraft", module: "Thaumcraft" }
-    transformedMod("com.github.GTNewHorizons:TinkersConstruct:1.10.5-GTNH:dev")
-    transformedMod("curse.maven:biomes-o-plenty-220318:2499612")
-    transformedMod("curse.maven:cofh-core-69162:2388751")
-    transformedMod("curse.maven:extra-utilities-225561:2264384")
-    transformedMod("curse.maven:travellers-gear-224440:2262113")
-    transformedMod("net.industrial-craft:industrialcraft-2:2.2.828-experimental:dev")
-    transformedMod(deobf("https://edge.forgecdn.net/files/2234/410/witchery-1.7.10-0.24.1.jar"))
-    transformedMod(deobf("https://mediafiles.forgecdn.net/files/2423/369/BiblioCraft%5bv1.11.7%5d%5bMC1.7.10%5d.jar"))
-    transformedMod(deobf("https://mediafiles.forgecdn.net/files/2367/915/journeymap-1.7.10-5.1.4p2-unlimited.jar"))
-    transformedMod("curse.maven:minechem-368422:2905830")
-    transformedModCompileOnly(deobf('https://media.forgecdn.net/files/4127/328/XaerosWorldMap_1.14.1.22_Forge_1.7.10.jar'))
-    transformedModCompileOnly("curse.maven:immersive-engineering-231951:2299019")
-    transformedMod("com.github.GTNewHorizons:harvestcraft:1.1.1-GTNH:dev")
-    transformedModCompileOnly deobf('https://media.forgecdn.net/files/4091/561/LOTRMod+v36.15.jar')
-    transformedModCompileOnly deobf("https://mediafiles.forgecdn.net/files/2523/840/Better+HUD+by+NukeDuck+%5b1.7.10%5d%5b1.3.5%5d.jar")
-    // Contains an outdated copy of thaumcraft api that breaks class loading at runtime
-    transformedModCompileOnly(deobf("https://mediafiles.forgecdn.net/files/2241/397/Pam%27s+Harvest+the+Nether+1.7.10a.jar"))
-    transformedMod(deobf("https://mediafiles.forgecdn.net/files/2340/786/ProjectE-1.7.10-PE1.10.1.jar"))
-    transformedMod(deobf("https://mediafiles.forgecdn.net/files/2223/720/Ztones-1.7.10-2.2.1.jar"))
-
-    transformedMod("thaumcraft:Thaumcraft:1.7.10-4.2.3.5:dev")
-    transformedMod(deobf("https://mediafiles.forgecdn.net/files/2285/272/Automagy-1.7.10-0.28.2.jar"))
-
-    // Transitive updates to make runClient17 work
-    transformedMod("com.github.GTNewHorizons:ForgeMultipart:1.3.4:dev")
+    // Thermos Compat, compile only not run in dev by default
+    compileOnly files("dependencies/Thermos-1.7.10-1614-stripped.jar")
 }

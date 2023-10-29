@@ -7,6 +7,4 @@ public interface IPatchedTextureAtlasSprite {
     boolean needsAnimationUpdate();
 
     void unmarkNeedsAnimationUpdate();
-
-    void updateAnimationsDryRun();
 }

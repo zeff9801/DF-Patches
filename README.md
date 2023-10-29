@@ -1,6 +1,6 @@
 # A Hodgepodge of Fixes
 
-Requires UniMixins 0.1.5+ (https://github.com/LegacyModdingMC/UniMixins/) to work.
+Requires GTNHMixins 2.0.0+ (https://github.com/GTNewHorizons/GTNHMixins) to work.
 
 ## Running
 

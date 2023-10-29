@@ -1,2 +1,43 @@
 repositories {
+    maven {
+        name = "GTNH Maven"
+        url = "http://jenkins.usrv.eu:8081/nexus/content/groups/public/"
+    }
+    maven {
+        // IC2
+        name = "ic2"
+        url = "https://maven.ic2.player.to/"
+        metadataSources {
+            mavenPom()
+            artifact()
+        }
+    }
+    maven {
+        // IC2
+        name = "ic2"
+        url = "https://maven2.ic2.player.to/"
+        metadataSources {
+            mavenPom()
+            artifact()
+        }
+    }
+    maven {
+        name = "hungeroverhaul"
+        url = "https://dvs1.progwml6.com/files/maven/"
+    }
+    maven {
+        url "https://cursemaven.com"
+    }
+    maven {
+        name = "jitpack"
+        url("https://jitpack.io")
+    }
+    maven {
+        name "mvnmrtjp"
+        url "http://files.projectredwiki.com/maven"
+        metadataSources {
+            mavenPom()
+            artifact()
+        }
+    }
 }

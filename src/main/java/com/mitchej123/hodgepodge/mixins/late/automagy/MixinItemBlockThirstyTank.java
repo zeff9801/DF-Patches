@@ -1,22 +1,17 @@
 package com.mitchej123.hodgepodge.mixins.late.automagy;
 
 import java.util.Arrays;
-
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.IFluidContainerItem;
-
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Unique;
-
 import tuhljin.automagy.blocks.ItemBlockThirstyTank;
 import tuhljin.automagy.tiles.ModTileEntity;
 import tuhljin.automagy.tiles.TileEntityThirstyTank;
 
 @Mixin(ItemBlockThirstyTank.class)
 public class MixinItemBlockThirstyTank implements IFluidContainerItem {
-
     @Override
     public FluidStack getFluid(ItemStack container) {
         return container.hasTagCompound() ? FluidStack.loadFluidStackFromNBT(container.stackTagCompound) : null;
@@ -29,7 +24,8 @@ public class MixinItemBlockThirstyTank implements IFluidContainerItem {
             final int[] glyphs = ModTileEntity.getIntArrayFromNbtOrDefault(container.stackTagCompound, "Glyphs", 0, 6);
             final int glyphOfTheReservoirId = 8;
             final int glyphOfTheReservoirCount = (int) Arrays.stream(glyphs)
-                    .filter(glyph -> glyph == glyphOfTheReservoirId).count();
+                    .filter(glyph -> glyph == glyphOfTheReservoirId)
+                    .count();
             capacityInBuckets += glyphOfTheReservoirCount * TileEntityThirstyTank.CAPACITY_IN_BUCKETS_PER_UPGRADE;
         }
         return capacityInBuckets * 1000;
@@ -64,8 +60,7 @@ public class MixinItemBlockThirstyTank implements IFluidContainerItem {
         return new FluidStack(fluidStack, drain);
     }
 
-    @Unique
-    private void setFluid(ItemStack container, FluidStack resource) {
+    public void setFluid(ItemStack container, FluidStack resource) {
         if (container == null) return;
         if (resource != null && 0 < resource.amount) {
             NBTTagCompound nbt = container.getTagCompound() != null ? container.getTagCompound() : new NBTTagCompound();

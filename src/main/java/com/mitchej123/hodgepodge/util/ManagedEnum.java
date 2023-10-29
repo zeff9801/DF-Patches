@@ -1,7 +1,6 @@
 package com.mitchej123.hodgepodge.util;
 
 public class ManagedEnum<T extends Enum<?>> {
-
     private final T[] allValues;
     private T value;
 

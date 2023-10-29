@@ -12,5 +12,4 @@ jobs:
     uses: GTNewHorizons/GTNH-Actions-Workflows/.github/workflows/build-and-test.yml@master
     with:
       workspace: setupDecompWorkspace
-      timeout: 180
     secrets: inherit
