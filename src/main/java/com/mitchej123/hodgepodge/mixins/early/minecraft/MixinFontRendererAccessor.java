@@ -30,6 +30,9 @@ public interface MixinFontRendererAccessor {
     int[] getColorCode();
 
     @Accessor
+    void setColorCode(int[] colorCode);
+
+    @Accessor
     ResourceLocation getLocationFontTexture();
 
     @Accessor
@@ -43,6 +46,9 @@ public interface MixinFontRendererAccessor {
 
     @Accessor
     boolean getUnicodeFlag();
+
+    @Accessor
+    void setUnicodeFlag(boolean unicodeFlag);
 
     @Accessor
     boolean getBidiFlag();
@@ -66,15 +72,30 @@ public interface MixinFontRendererAccessor {
     boolean getRandomStyle();
 
     @Accessor
+    void setRandomStyle(boolean randomStyle);
+
+    @Accessor
     boolean getBoldStyle();
+
+    @Accessor
+    void setBoldStyle(boolean boldStyle);
 
     @Accessor
     boolean getItalicStyle();
 
     @Accessor
+    void setItalicStyle(boolean italicStyle);
+
+    @Accessor
     boolean getUnderlineStyle();
 
     @Accessor
+    void setUnderlineStyle(boolean underlineStyle);
+
+    @Accessor
     boolean getStrikethroughStyle();
+
+    @Accessor
+    void setStrikethroughStyle(boolean strikethroughStyle);
 
 }
