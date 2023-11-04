@@ -625,6 +625,15 @@ public enum Mixins {
     FIX_CHAT_COLOR_WRAPPING(new Builder("Fix wrapped chat lines missing colors").setPhase(Phase.EARLY)
             .addMixinClasses("minecraft.MixinGuiNewChat_FixColorWrapping", "minecraft.MixinFontRendererAccessor")
             .setSide(Side.CLIENT).setApplyIf(() -> true)
+            .addTargetedMod(TargetedMod.VANILLA)),
+    SOUND_ACCESSORS(new Builder("Make classes accessible").setPhase(Phase.EARLY)
+            .addMixinClasses("minecraft.sound.MixinSoundHandlerAccessor", "minecraft.sound.MixinSoundManagerAccessor",
+                    "minecraft.sound.MixinSoundSystemAccessor")
+            .setSide(Side.CLIENT).setApplyIf(() -> true)
+            .addTargetedMod(TargetedMod.VANILLA)),
+    GUI_ACCESSORS(new Builder("Make classes accessible").setPhase(Phase.EARLY)
+            .addMixinClasses("minecraft.MixinGuiChatAccessor")
+            .setSide(Side.CLIENT).setApplyIf(() -> true)
             .addTargetedMod(TargetedMod.VANILLA));
 
     public final String name;

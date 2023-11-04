@@ -17,6 +17,9 @@ public interface MixinFontRendererAccessor {
         throw new IllegalStateException("Mixin stub invoked");
     }
 
+    @Invoker("wrapFormattedStringToWidth")
+    String callWrapFormattedStringToWidth(String str, int wrapWidth);
+
     @Accessor
     static ResourceLocation[] getUnicodePageLocations() {throw new IllegalStateException("Mixin stub invoked");}
 
