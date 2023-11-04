@@ -72,6 +72,9 @@ public interface MixinFontRendererAccessor {
     int getTextColor();
 
     @Accessor
+    void setTextColor(int textColor);
+
+    @Accessor
     boolean getRandomStyle();
 
     @Accessor
