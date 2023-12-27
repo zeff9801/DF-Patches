@@ -20,11 +20,15 @@ public class MixinKeyManager {
     @Shadow(remap = false) final List<KeyEvent> keyEvents = new ArrayList<KeyEvent>();
 
     @Shadow(remap = false) protected boolean[] keyDown;
+    /**
+     * @author
+     * @reason
+     */
     @Overwrite(remap = false)
     private KeyBinding[] registerKeyBindings() {
-        keyEvents.get(0).keyBind.name = "Speak";
+        keyEvents.get(0).keyBind.name = "Voice-Chat";
         keyEvents.get(1).keyBind.name = "Voice-Chat Options";
-        final KeyBinding keyBinding[] = new KeyBinding[keyEvents.size()];
+        final KeyBinding[] keyBinding = new KeyBinding[keyEvents.size()];
         for (int i = 0; i < keyBinding.length; i++) {
             final KeyEvent keyEvent = this.keyEvents.get(i);
             keyBinding[i] = new KeyBinding(keyEvent.keyBind.name, keyEvent.keyID, "key.dfclient.category");
