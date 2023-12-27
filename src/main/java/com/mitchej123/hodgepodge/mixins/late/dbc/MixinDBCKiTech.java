@@ -9,11 +9,14 @@ import JinRyuu.JRMCore.JRMCoreHDBC;
 import JinRyuu.JRMCore.server.config.dbc.JGConfigUltraInstinct;
 import com.mitchej123.hodgepodge.util.JbraHelper;
 import me.aegous.dfclient.main.DFClient;
+import me.aegous.dfclient.utils.Util;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Redirect;
 
 import java.awt.*;
 import java.util.Random;
@@ -28,7 +31,18 @@ public class MixinDBCKiTech {
     @Shadow(remap = false)
     private static int power;
 
-    //Modification to the DBC aura spawning, adding new auras for our custom forms
+    /**
+     * @Reason Have DBC use our fly skill level instead of theirs
+     */
+    @Redirect(method = "FloatKi", at = @At(value = "INVOKE", target = "LJinRyuu/JRMCore/JRMCoreH;SklLvl(IB)I"), remap = false)
+    private static int redirectGetFlyLevel(int sn, byte pwr) {
+        return Util.getSkillLevel("fly");
+    }
+
+    /**
+     * @author 1ost_
+     * @reason Extend base DBC Aura system to support our custom forms system
+     */
     @Overwrite(remap = false)
     public static void chargePart(final EntityPlayer p, final int r, final int a, int c, final int s, final int k, final boolean b, final String se) {
         int dbcchargepart = 0;
