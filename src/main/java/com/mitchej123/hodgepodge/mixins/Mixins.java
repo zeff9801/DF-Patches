@@ -534,7 +534,7 @@ public enum Mixins {
             .setApplyIf(() -> true)
             .addTargetedMod(TargetedMod.JBRA)),
     WORLDEDIT_FIX_CRASH(new Builder("Fix the crash with the //calc command")
-            .setPhase(Phase.EARLY)
+            .setPhase(Phase.LATE)
             .addMixinClasses("worldedit.MixinUtilityCommands")
             .setApplyIf(() -> true)
             .setSide(Side.SERVER)
