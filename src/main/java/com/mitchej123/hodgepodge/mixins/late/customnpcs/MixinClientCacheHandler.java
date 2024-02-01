@@ -8,9 +8,6 @@ import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
-import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(ClientCacheHandler.class)
 public class MixinClientCacheHandler {
@@ -18,10 +15,10 @@ public class MixinClientCacheHandler {
     @Shadow @Final private static CacheHashMap<String, CacheHashMap.CachedObject<ImageData>> imageDataCache;
 
     /**
-     * @author
-     * @reason
+     * @author fix skins not loading
+     * @reason Zeff
      */
-    @Overwrite
+    @Overwrite(remap = false)
     public static ImageData getNPCTexture(String directory, boolean x64, ResourceLocation resource) {
         String newDirectory = directory;
         if (newDirectory.contains("http://novask.in/") || newDirectory.contains("https://novask.in/")) {
