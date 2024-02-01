@@ -608,6 +608,11 @@ repositories {
             includeGroup "org.lwjgl"
         }
     }
+    repositories {
+        flatDir {
+            dirs 'deps'
+        }
+    }
     if (includeWellKnownRepositories.toBoolean()) {
         exclusiveContent {
             forRepository {

@@ -53,6 +53,17 @@ dependencies {
     runtimeOnly(deobf("https://github.com/makamys/CoreTweaks/releases/download/0.3.3.2/CoreTweaks-1.7.10-0.3.3.2+nomixin.jar"))
 }
 
+dependencies {
+    compile name: 'CustomNPC-Plus-1.8.6'
+    compile name: 'DragonBlockC-v1.4.82'
+    compile name: 'JRMCore-v1.3.44'
+    compile name: 'JBRA-Client-v1.6.47'
+    compile name: 'GlibysVC-1.7.10-0.6.7'
+    compile name: 'DF-Client'
+    compile name: 'worldedit-forge-mc1.7.10-6.0-beta-01'
+    compile name: 'NotEnoughItems-1.7.10-2.1.13'
+}
+
 // Replace when RFG support deobfuscation from notch mappings
 
 import java.nio.file.Files
