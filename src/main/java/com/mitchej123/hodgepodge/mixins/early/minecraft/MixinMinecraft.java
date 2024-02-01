@@ -5,6 +5,7 @@ import com.mitchej123.hodgepodge.util.ResourceLoader;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.RenderGlobal;
 import net.minecraft.client.resources.IReloadableResourceManager;
+import net.minecraft.client.resources.IResourcePack;
 import net.minecraft.client.resources.LanguageManager;
 import net.minecraft.client.resources.ResourcePackRepository;
 import net.minecraft.client.settings.GameSettings;
@@ -21,8 +22,6 @@ import java.util.List;
 
 @Mixin(Minecraft.class)
 public class MixinMinecraft {
-
-
     @Shadow
     @Final
     private static Logger logger;
@@ -34,30 +33,37 @@ public class MixinMinecraft {
     @Shadow public RenderGlobal renderGlobal;
 
     /**
-     * @Reason Injects our custom resource pack into the game, so we don't have to use resource packs anymore
+     * @reason Injects our custom resource pack into the game, so we don't have to use resource packs anymore
+     * @author Zeff
      */
     @Overwrite
     public void refreshResources() {
-        ArrayList arraylist = Lists.newArrayList(this.defaultResourcePacks);
-        ResourceLoader.insertNormalPack(arraylist); //Our change
-        Iterator iterator = this.mcResourcePackRepository.getRepositoryEntries().iterator();
 
-        while (iterator.hasNext()) {
-            ResourcePackRepository.Entry entry = (ResourcePackRepository.Entry) iterator.next();
+        ArrayList<IResourcePack> arraylist = Lists.newArrayListWithExpectedSize(
+                this.defaultResourcePacks.size() + this.mcResourcePackRepository.getRepositoryEntries().size());
+
+        ResourceLoader.insertNormalPack(arraylist); //Our change
+
+        for (Object o : this.mcResourcePackRepository.getRepositoryEntries()) {
+            ResourcePackRepository.Entry entry = (ResourcePackRepository.Entry) o;
             arraylist.add(entry.getResourcePack());
         }
 
+        IResourcePack func_148530_e = this.mcResourcePackRepository.func_148530_e();
         if (this.mcResourcePackRepository.func_148530_e() != null) {
-            arraylist.add(this.mcResourcePackRepository.func_148530_e());
+            arraylist.add(func_148530_e);
         }
         try {
             this.mcResourceManager.reloadResources(arraylist);
         } catch (RuntimeException runtimeexception) {
             logger.info("Caught error stitching, removing all assigned resourcepacks", runtimeexception);
+
             arraylist.clear();
             arraylist.addAll(this.defaultResourcePacks);
+
             this.mcResourcePackRepository.func_148527_a(Collections.emptyList());
             this.mcResourceManager.reloadResources(arraylist);
+
             this.gameSettings.resourcePacks.clear();
             this.gameSettings.saveOptions();
         }
