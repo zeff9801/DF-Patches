@@ -34,7 +34,8 @@ public class MixinMinecraft {
     @Shadow public RenderGlobal renderGlobal;
 
     /**
-     * @Reason Injects our custom resource pack into the game, so we don't have to use resource packs anymore
+     * @reason Injects our custom resource pack into the game, so we don't have to use resource packs anymore
+     * @author Zeff
      */
     @Overwrite
     public void refreshResources() {
