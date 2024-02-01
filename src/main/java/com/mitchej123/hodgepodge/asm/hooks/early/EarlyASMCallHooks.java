@@ -10,10 +10,10 @@ import cpw.mods.fml.common.discovery.asm.ModAnnotation;
 import java.io.File;
 import org.apache.logging.log4j.Level;
 
+@SuppressWarnings("unused")
 public class EarlyASMCallHooks {
     public static ModContainer build(ASMModParser modParser, File modSource, ModCandidate container) {
         String className = modParser.getASMType().getClassName();
-
         for (ModAnnotation ann : modParser.getAnnotations()) {
             if (modTypes.containsKey(ann.getASMType())) {
                 FMLLog.fine("Identified a mod of type %s (%s) - loading", ann.getASMType(), className);
@@ -29,7 +29,6 @@ public class EarlyASMCallHooks {
                 }
             }
         }
-
         return null;
     }
 }
