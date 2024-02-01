@@ -44,7 +44,12 @@ public enum TargetedMod {
     VOXELMAP("VoxelMap", "com.thevoxelbox.voxelmap.litemod.VoxelMapTransformer"),
     WITCHERY("Witchery", null, "witchery"),
     XAEROWORLDMAP("Xaero's World Map", null, "XaeroWorldMap"),
-    ZTONES("ZTones", null, "Ztones");
+    ZTONES("ZTones", null, "Ztones"),
+    DBC("Dragon Block C", null, "jinryuudragonblockc"),
+    JRMC("Jinryuu Core", null, "jinryuujrmcore"),
+    JBRA("Jinryuu Render Addon", null, "jinryuubetterrenderaddon"),
+    CUSTOMNPCS("CustomNPC+", "null", "customnpcs"),
+    GIBLY_VOICECHAT("Gibly's Voice Chat", null, "gvc");
 
     /** The "name" in the {@link Mod @Mod} annotation */
     public final String modName;

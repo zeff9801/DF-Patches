@@ -1,11 +1,7 @@
 package com.mitchej123.hodgepodge.mixins.late.jrmcore;
 
 import JinRyuu.JRMCore.JRMCoreGuiHandler;
-import JinRyuu.JRMCore.JRMCoreGuiSCM;
 import JinRyuu.JRMCore.JRMCoreGuiScreen;
-import JinRyuu.JRMCore.i.ExtendedPlayer;
-import JinRyuu.JRMCore.i.GuiCustomPlayerInventory;
-import JinRyuu.JRMCore.mod_JRMCore;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
