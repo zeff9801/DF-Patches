@@ -1,6 +1,7 @@
 package com.mitchej123.hodgepodge.mixins.early.minecraft;
 
 import net.minecraft.client.renderer.entity.RendererLivingEntity;
+
 import org.lwjgl.opengl.GL11;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -11,23 +12,22 @@ import org.spongepowered.asm.mixin.injection.Redirect;
  */
 @Mixin(RendererLivingEntity.class)
 public class MixinRendererLivingEntity {
+
     @Redirect(
             method = "renderArrowsStuckInEntity",
-            at =
-                    @At(
-                            value = "INVOKE",
-                            target = "Lnet/minecraft/client/renderer/RenderHelper;disableStandardItemLighting()V"))
-    private void disableCorrectLighting() {
+            at = @At(
+                    value = "INVOKE",
+                    target = "Lnet/minecraft/client/renderer/RenderHelper;disableStandardItemLighting()V"))
+    private void hodgepodge$disableCorrectLighting() {
         GL11.glDisable(GL11.GL_LIGHTING);
     }
 
     @Redirect(
             method = "renderArrowsStuckInEntity",
-            at =
-                    @At(
-                            value = "INVOKE",
-                            target = "Lnet/minecraft/client/renderer/RenderHelper;enableStandardItemLighting()V"))
-    private void enableCorrectLighting() {
+            at = @At(
+                    value = "INVOKE",
+                    target = "Lnet/minecraft/client/renderer/RenderHelper;enableStandardItemLighting()V"))
+    private void hodgepodge$enableCorrectLighting() {
         GL11.glEnable(GL11.GL_LIGHTING);
     }
 }

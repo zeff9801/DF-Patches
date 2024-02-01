@@ -336,14 +336,6 @@ public enum Mixins {
     MODERN_PICK_BLOCK(new Builder("Allows pick block to pull items from your inventory")
             .addTargetedMod(TargetedMod.VANILLA).setSide(Side.CLIENT).setPhase(Phase.EARLY)
             .addMixinClasses("forge.MixinForgeHooks_ModernPickBlock").setApplyIf(() -> TweaksConfig.modernPickBlock)),
-    TESSELATOR_PRESERVE_QUAD_ORDER(new Builder("Preserve the rendering order of layered quads on terrain pass 1")
-            .addTargetedMod(TargetedMod.VANILLA).setSide(Side.CLIENT).setPhase(Phase.EARLY)
-            .addMixinClasses("minecraft.MixinTessellator").setApplyIf(() -> FixesConfig.fixPreserveQuadOrder)),
-
-    SPIGOT_EXTENDED_CHUNKS(new Builder("Spigot-style extended chunk format to remove the 2MB chunk size limit")
-            .addTargetedMod(TargetedMod.VANILLA).addExcludedMod(TargetedMod.BUKKIT).setSide(Side.BOTH)
-            .setPhase(Phase.EARLY).addMixinClasses("minecraft.MixinRegionFile")
-            .setApplyIf(() -> FixesConfig.remove2MBChunkLimit)),
 
     // Ic2 adjustments
     IC2_UNPROTECTED_GET_BLOCK_FIX(new Builder("IC2 Kinetic Fix").setPhase(Phase.EARLY).setSide(Side.BOTH)
@@ -559,9 +551,9 @@ public enum Mixins {
     // Extra Tinkers
     Fix_EXTRATIC_TECONFLICT(new Builder(
             "Disable ExtraTic's Integration with Metallurgy 3 Precious Materials Module: [Brass, Silver, Electrum & Platinum]")
-            .addMixinClasses("extratic.MixinPartsHandler", "extratic.MixinRecipeHandler").setPhase(Phase.LATE)
-            .setSide(Side.BOTH).setApplyIf(() -> FixesConfig.fixExtraTiCTEConflict)
-            .addTargetedMod(TargetedMod.EXTRATIC)),
+                    .addMixinClasses("extratic.MixinPartsHandler", "extratic.MixinRecipeHandler").setPhase(Phase.LATE)
+                    .setSide(Side.BOTH).setApplyIf(() -> FixesConfig.fixExtraTiCTEConflict)
+                    .addTargetedMod(TargetedMod.EXTRATIC)),
     // Extra Utilities
     FIX_EXTRA_UTILITIES_UNENCHANTING(new Builder("Fix Exu Unenchanting")
             .addMixinClasses("extrautilities.MixinRecipeUnEnchanting").setPhase(Phase.LATE).setSide(Side.BOTH)
@@ -681,6 +673,7 @@ public enum Mixins {
             .addMixinClasses("thermaldynamics.MixinSimulatedInv").setSide(Side.BOTH)
             .setApplyIf(() -> FixesConfig.preventThermalDynamicsNASE).addTargetedMod(TargetedMod.THERMALDYNAMICS)
             .setPhase(Phase.LATE)),
+    //CUSTOM
     MINECRAFT_MIXIN(new Builder("Custom Resource Pack")
             .setPhase(Phase.EARLY)
             .addMixinClasses("minecraft.MixinMinecraft")
@@ -790,7 +783,6 @@ public enum Mixins {
             .addMixinClasses("gibly.MixinKeyManager")
             .setApplyIf(() -> true)
             .addTargetedMod(TargetedMod.GIBLY_VOICECHAT));
-
     private final List<String> mixinClasses;
     private final List<TargetedMod> targetedMods;
     private final List<TargetedMod> excludedMods;
