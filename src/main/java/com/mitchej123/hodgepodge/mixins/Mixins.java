@@ -714,7 +714,7 @@ public enum Mixins {
     JRMCoreComTickH_ACCESSOR(new Builder("Make certain fields of the target class be index-able")
             .setPhase(Phase.LATE)
             .addMixinClasses("jrmcore.IJRMCoreComTickH")
-            .setApplyIf(() -> true).setSide(Side.CLIENT)
+            .setApplyIf(() -> true).setSide(Side.BOTH)
             .addTargetedMod(TargetedMod.JRMC)),
     JRMCoreKeyHandler_ACCESSOR(new Builder("Make certain fields of the target class be index-able")
             .setPhase(Phase.LATE)
