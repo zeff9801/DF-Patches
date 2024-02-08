@@ -48,7 +48,7 @@ public enum TargetedMod {
     DBC("Dragon Block C", null, "jinryuudragonblockc"),
     JRMC("Jinryuu Core", null, "jinryuujrmcore"),
     JBRA("Jinryuu Render Addon", null, "jinryuubetterrenderaddon"),
-    CUSTOMNPCS("CustomNPC+", "null", "customnpcs"),
+    CUSTOMNPCS("CustomNPC+", null, "customnpcs"),
     GIBLY_VOICECHAT("Gibly's Voice Chat", null, "gvc");
 
     /** The "name" in the {@link Mod @Mod} annotation */
