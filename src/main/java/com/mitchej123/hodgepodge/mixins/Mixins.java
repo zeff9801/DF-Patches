@@ -140,6 +140,9 @@ public enum Mixins {
     FORGE_UPDATE_CHECK_FIX(new Builder("Fix the forge update checker").setPhase(Phase.EARLY).setSide(Side.BOTH)
             .addMixinClasses("forge.MixinForgeVersion_FixUpdateCheck")
             .setApplyIf(() -> FixesConfig.fixForgeUpdateChecker).addTargetedMod(TargetedMod.VANILLA)),
+    FORGE_FIX_CLASS_TYPO(new Builder("Fix a class name typo in MinecraftForge's initialize method")
+            .setPhase(Phase.EARLY).setSide(Side.BOTH).addMixinClasses("forge.MixinMinecraftForge")
+            .setApplyIf(() -> FixesConfig.fixEffectRendererClassTypo).addTargetedMod(TargetedMod.VANILLA)),
     NORTHWEST_BIAS_FIX(new Builder("Fix Northwest Bias").setPhase(Phase.EARLY).setSide(Side.BOTH)
             .addMixinClasses("minecraft.MixinRandomPositionGenerator").setApplyIf(() -> FixesConfig.fixNorthWestBias)
             .addTargetedMod(TargetedMod.VANILLA)),
@@ -185,6 +188,12 @@ public enum Mixins {
     FIX_HUGE_CHAT_KICK(new Builder("Fix huge chat kick").setPhase(Phase.EARLY).setSide(Side.BOTH)
             .addMixinClasses("minecraft.MixinS02PacketChat").setApplyIf(() -> FixesConfig.fixHugeChatKick)
             .addTargetedMod(TargetedMod.VANILLA)),
+
+    FIX_LOGIN_DIMENSION_ID_OVERFLOW(
+            new Builder("Fix dimension id overflowing when a player first logins on a server").setPhase(Phase.EARLY)
+                    .setSide(Side.BOTH).addMixinClasses("minecraft.packets.MixinS01PacketJoinGame_FixDimensionID")
+                    .setApplyIf(() -> FixesConfig.fixLoginDimensionIDOverflow).addTargetedMod(TargetedMod.VANILLA)),
+
     FIX_WORLD_SERVER_LEAKING_UNLOADED_ENTITIES(new Builder("Fix world server leaking unloaded entities")
             .setPhase(Phase.EARLY).setSide(Side.BOTH).addMixinClasses("minecraft.MixinWorldServerUpdateEntities")
             .setApplyIf(() -> FixesConfig.fixWorldServerLeakingUnloadedEntities).addTargetedMod(TargetedMod.VANILLA)),
@@ -336,6 +345,9 @@ public enum Mixins {
     MODERN_PICK_BLOCK(new Builder("Allows pick block to pull items from your inventory")
             .addTargetedMod(TargetedMod.VANILLA).setSide(Side.CLIENT).setPhase(Phase.EARLY)
             .addMixinClasses("forge.MixinForgeHooks_ModernPickBlock").setApplyIf(() -> TweaksConfig.modernPickBlock)),
+    TESSELATOR_PRESERVE_QUAD_ORDER(new Builder("Preserve the rendering order of layered quads on terrain pass 1")
+            .addTargetedMod(TargetedMod.VANILLA).setSide(Side.CLIENT).setPhase(Phase.EARLY)
+            .addMixinClasses("minecraft.MixinTessellator").setApplyIf(() -> FixesConfig.fixPreserveQuadOrder)),
     FAST_BLOCK_PLACING(new Builder("Allows blocks to be placed faster").addTargetedMod(TargetedMod.VANILLA)
             .setSide(Side.CLIENT).setPhase(Phase.EARLY).addMixinClasses("minecraft.MixinMinecraft_FastBlockPlacing")
             .setApplyIf(() -> true)), // Always apply, config handled in mixin
@@ -344,6 +356,15 @@ public enum Mixins {
             .addTargetedMod(TargetedMod.VANILLA).addExcludedMod(TargetedMod.BUKKIT).setSide(Side.BOTH)
             .setPhase(Phase.EARLY).addMixinClasses("minecraft.MixinRegionFile")
             .setApplyIf(() -> FixesConfig.remove2MBChunkLimit)),
+
+    AUTOSAVE_INTERVAL(new Builder("Sets the auto save interval in ticks").setPhase(Phase.EARLY).setSide(Side.BOTH)
+            .addTargetedMod(TargetedMod.VANILLA)
+            .addMixinClasses("minecraft.server.MixinMinecraftServer_AutoSaveInterval")
+            .setApplyIf(() -> TweaksConfig.autoSaveInterval != 900)),
+
+    LIGHTER_WATER(new Builder("Decreases water opacity from 3 to 1, like in modern").setPhase(Phase.EARLY)
+            .setSide(Side.BOTH).addTargetedMod(TargetedMod.VANILLA).addMixinClasses("minecraft.MixinBlock_LighterWater")
+            .setApplyIf(() -> TweaksConfig.useLighterWater)),
 
     // Ic2 adjustments
     IC2_UNPROTECTED_GET_BLOCK_FIX(new Builder("IC2 Kinetic Fix").setPhase(Phase.EARLY).setSide(Side.BOTH)
@@ -401,6 +422,9 @@ public enum Mixins {
     JOURNEYMAP_UPDATE_CHECK(new Builder("Yeet Journeymap Update Check").setPhase(Phase.LATE).setSide(Side.CLIENT)
             .addMixinClasses("journeymap.MixinVersionCheck").setApplyIf(() -> FixesConfig.removeUpdateChecks)
             .addTargetedMod(TargetedMod.JOURNEYMAP)),
+    DAMAGE_INDICATORS_UPDATE_CHECK(new Builder("Yeet Damage Indicators Update Check").setPhase(Phase.LATE)
+            .setSide(Side.CLIENT).addMixinClasses("damageindicators.DIClientProxyMixin")
+            .setApplyIf(() -> FixesConfig.removeUpdateChecks).addTargetedMod(TargetedMod.DAMAGE_INDICATORS)),
 
     // Railcraft Anchors
     WAKE_ANCHORS_ON_LOGIN_PASSIVE(new Builder("Wake passive anchors on login").setPhase(Phase.LATE).setSide(Side.BOTH)
@@ -438,6 +462,11 @@ public enum Mixins {
             .setPhase(Phase.LATE).setSide(Side.BOTH)
             .addMixinClasses("thaumcraft.MixinEntityGolemBase", "thaumcraft.MixinItemGolemBell")
             .setApplyIf(() -> FixesConfig.fixThaumcraftGolemMarkerLoading).addTargetedMod(TargetedMod.THAUMCRAFT)),
+
+    FIX_WORLD_COORDINATE_HASHING_METHOD(new Builder("Implement a proper hashing method for WorldCoordinates")
+            .addMixinClasses("thaumcraft.MixinWorldCoordinates").setPhase(Phase.LATE).setSide(Side.BOTH)
+            .setApplyIf(() -> FixesConfig.fixThaumcraftWorldCoordinatesHashingMethod)
+            .addTargetedMod(TargetedMod.THAUMCRAFT)),
 
     // BOP
     FIX_QUICKSAND_XRAY(new Builder("Fix Xray through block without collision boundingBox").setPhase(Phase.LATE)
@@ -578,6 +607,11 @@ public enum Mixins {
             .addMixinClasses("extrautilities.MixinBlockDrum").setSide(Side.BOTH).setPhase(Phase.LATE)
             .setApplyIf(() -> FixesConfig.fixExtraUtilitiesDrumEatingCells)
             .addTargetedMod(TargetedMod.EXTRA_UTILITIES)),
+
+    // PortalGun
+    PORTALGUN_FIX_URLS(new Builder("Fix URLs used to download the sound pack")
+            .addMixinClasses("portalgun.ThreadDownloadResourcesMixin").addTargetedMod(TargetedMod.PORTAL_GUN)
+            .setApplyIf(() -> FixesConfig.fixPortalGunURLs).setPhase(Phase.LATE).setSide(Side.CLIENT)),
 
     // VoxelMap
     REPLACE_VOXELMAP_REFLECTION(new Builder("Replace VoxelMap Reflection")
