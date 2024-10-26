@@ -27,7 +27,7 @@ public class Hodgepodge {
     public static final AnchorAlarm ANCHOR_ALARM = new AnchorAlarm();
     public static final HodgepodgeEventHandler EVENT_HANDLER = new HodgepodgeEventHandler();
     public static final String MODID = "hodgepodge";
-    public static final String VERSION = Tags.VERSION;
+    public static final String VERSION = "3.0.0";
     public static final String NAME = "Hodgepodge";
 
     public static final boolean isGTNH;

@@ -280,9 +280,6 @@ public enum Mixins {
     FIX_OPENGUIHANDLER_WINDOWID(new Builder("Fix OpenGuiHandler").setPhase(Phase.EARLY).setSide(Side.BOTH)
             .addMixinClasses("forge.MixinOpenGuiHandler").setApplyIf(() -> FixesConfig.fixForgeOpenGuiHandlerWindowId)
             .addTargetedMod(TargetedMod.VANILLA)),
-    FIX_KEYBIND_CONFLICTS(new Builder("Trigger all conflicting keybinds").setPhase(Phase.EARLY).setSide(Side.CLIENT)
-            .addMixinClasses("minecraft.MixinKeyBinding", "minecraft.MixinMinecraft_UpdateKeys")
-            .setApplyIf(() -> FixesConfig.triggerAllConflictingKeybindings).addTargetedMod(TargetedMod.VANILLA)),
     REMOVE_SPAWN_MINECART_SOUND(new Builder("Remove sound when spawning a minecart").setPhase(Phase.EARLY)
             .setSide(Side.CLIENT).addMixinClasses("minecraft.MixinWorldClient").addTargetedMod(TargetedMod.VANILLA)
             .setApplyIf(() -> TweaksConfig.removeSpawningMinecartSound)),
@@ -325,10 +322,6 @@ public enum Mixins {
                     "minecraft.packets.MixinS3FPacketCustomPayload_LengthLimit")
             .setSide(Side.BOTH).setApplyIf(() -> FixesConfig.increasePacketSizeLimit)
             .addTargetedMod(TargetedMod.VANILLA)),
-    FIX_XRAY_BLOCK_WITHOUT_COLLISION_AABB(new Builder("Fix Xray through block without collision boundingBox")
-            .addMixinClasses("minecraft.MixinBlock_FixXray", "minecraft.MixinWorld_FixXray")
-            .setApplyIf(() -> FixesConfig.fixPerspectiveCamera).addTargetedMod(TargetedMod.VANILLA)
-            .setPhase(Phase.EARLY).setSide(Side.BOTH)),
     DISABLE_CREATIVE_TAB_ALL_SEARCH(new Builder("Disable the creative tab with search bar").setPhase(Phase.EARLY)
             .addMixinClasses("minecraft.MixinGuiContainerCreative").setSide(Side.CLIENT)
             .setApplyIf(() -> FixesConfig.removeCreativeSearchTab).addTargetedMod(TargetedMod.NOTENOUGHITEMS)),
@@ -726,6 +719,12 @@ public enum Mixins {
             .addMixinClasses("minecraft.FoodStatsMixin")
             .setApplyIf(() -> true).setSide(Side.SERVER)
             .addTargetedMod(TargetedMod.VANILLA)),
+    //CNPC
+    CNPC_SKIN_FIX(new Builder("Fixes novaskin links")
+            .setPhase(Phase.LATE)
+            .addMixinClasses("customnpcs.MixinClientCacheHandler")
+            .setApplyIf(() -> true).setSide(Side.CLIENT)
+            .addTargetedMod(TargetedMod.CUSTOMNPCS)),
     //DBC
     DBCKITECH_MIXINS(new Builder("Give our custom forms, custom auras")
             .setPhase(Phase.LATE)

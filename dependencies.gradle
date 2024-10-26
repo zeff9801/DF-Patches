@@ -56,6 +56,21 @@ dependencies {
 }
 
 // Replace when RFG support deobfuscation from notch mappings
+repositories {
+    flatDir {
+        dirs 'deps'
+    }
+}
+dependencies {
+    compile name: 'CustomNPC-Plus-1.8.6'
+    compile name: 'DragonBlockC-v1.4.82'
+    compile name: 'JRMCore-v1.3.44'
+    compile name: 'JBRA-Client-v1.6.47'
+    compile name: 'GlibysVC-1.7.10-0.6.7'
+    compile name: 'DF-Client'
+    compile name: 'worldedit-forge-mc1.7.10-6.0-beta-01'
+    compile name: 'NotEnoughItems-1.7.10-2.1.13'
+}
 
 import java.nio.file.Files
 import java.nio.file.Paths
